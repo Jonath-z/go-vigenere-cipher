@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-var alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~`!@#$%^&*(-_+={}[]|\\/:;\"'<>,.? "
+var alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~`!@#$%^&*()-_+={}[]|\\/:;\"'<>,.? "
 
 var alphabetCharacterset = []rune(alphabet)
 
@@ -18,7 +18,7 @@ func contains(set []int, _index int) bool {
 	return false
 }
 
-func getLetterPositionOfKeyInTheAlphabet(key string, alphabet string) []int {
+func getLetterPositionOfKeyInTheAlphabet(key string) []int {
 	// set of key's letter position in the alphabet
 	set := []int{}
 
@@ -115,11 +115,15 @@ func decode(encodedStr string, encryptionKey []int) string {
 }
 
 func vinegereCipher(key string) {
-	encryptionKey := getLetterPositionOfKeyInTheAlphabet(key, alphabet)
+	encryptionKey := getLetterPositionOfKeyInTheAlphabet(key)
 	encodedString := encode("Vigenere-cipher algorihtm", encryptionKey)
 	decodedString := decode(encodedString, encryptionKey)
+	encodedString2 := encode("Now that you've gotten your code to a stable place (nicely done, by the way), add a test. Testing your code during development can expose bugs that find their way in as you make changes. In this topic, you add a test for the Hello function. Note: This topic is part of a multi-part tutorial that begins with Create a Go module. Go's built-in support for unit testing makes it easier to test as you go. Specifically, using naming conventions, Go's testing package, and the go test command, you can quickly write and execute tests. In the greetings directory, create a file called greetings_test.go. Ending a file's name with _test.go tells the go test command that this file contains test functions. In greetings_test.go, paste the following code and save the file.", encryptionKey)
+	decodedString2 := decode(encodedString2, encryptionKey)
 	fmt.Println("Encoded String", encodedString)
 	fmt.Println("Decoded String", decodedString)
+	fmt.Println("Encoded String 1", encodedString2)
+	fmt.Println("Decoded String 2", decodedString2)
 }
 
 func main() {
